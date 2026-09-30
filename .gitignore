@@ -210,3 +210,6 @@ __marimo__/
 chromedriver/
 
 config.json
+
+.allure_results
+allure_results/
