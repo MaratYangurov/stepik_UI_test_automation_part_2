@@ -33,7 +33,7 @@ class BasePage:
         :param breads_crumbs: хлебные крошки, в нужном порядке (напр. [Главная, Вторая, Третья])
         :type breads_crumbs: list"""
         with allure.step('Проверяем формирование хлебных крошек'):
-            for idx in range(1, self.element_breadcrumb.count()):
+            for idx in range(1, self.element_breadcrumb.count()+1):
                 loc = self.element_breadcrumb.get_element().nth(idx)
                 expect(loc).to_have_text(breads_crumbs[idx])
 
