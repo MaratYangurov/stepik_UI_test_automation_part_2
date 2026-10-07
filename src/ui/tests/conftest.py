@@ -5,6 +5,7 @@ import pytest
 from src.ui.browser.browser_launcher import BrowserLauncher
 from src.ui.pages.base_page import BasePage
 from src.ui.pages.cart_page import CartPage
+from src.ui.pages.payment_page import PaymentPage
 from src.ui.pages.product_page import ProductPage
 
 config_yaml_path = Path(__file__).parent.parent / 'config_browser.yaml'
@@ -33,3 +34,7 @@ def product_page(browser):
 @pytest.fixture(scope='function')
 def cart_page(browser):
     return CartPage(browser)
+
+@pytest.fixture(scope='function')
+def payment_page(browser):
+    return PaymentPage(browser)
