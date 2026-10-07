@@ -23,6 +23,9 @@ class BasePage:
                                           allure_name='Search')
         self.element_card = Element(page, stratagy='locator', selector='locator', allure_name='Карточки с товаром')
         self.element_breadcrumb = Element(page, stratagy='locator', selector='.breadcrumb-item', allure_name='Хлебные крошки')
+        self.htc_touch = Text(page, stratagy='locator', selector="//*[text()='HTC Touch HD'])[2]", allure_name='HTC')
+        self.button_add_to_card = Button(page, stratagy='by_role', role='button', value='Add to Cart', allure_name='Add to Cart')
+        self.button_view_cart = Button(page, stratagy='by_text', value='View Cart')
 
     def open(self):
         """Открываем страницу по url"""
@@ -51,3 +54,11 @@ class BasePage:
             self.element_card.get_element().first.wait_for(state='visible')
             coutner_card = self.element_card.get_element().count()
             assert coutner_card == cards
+
+    def checkout_htc_and_ad_to_card(self, search_name):
+        with allure.step('Выберем второй в списке девайс HTC'):
+            self.input_search.fill(search_name)
+            self.htc_touch.click()
+        with allure.step('Добавим девайс в корзину'):
+            self.button_add_to_card.click()
+            self.button_view_cart.click()
